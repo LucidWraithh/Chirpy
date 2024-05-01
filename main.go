@@ -53,9 +53,9 @@ func main(){
 		"/app/*", 
 		apiCFG.incrementHits(http.StripPrefix("/app", http.FileServer(http.Dir(".")))),
 	)
-	mux.HandleFunc("/healthz", HTTPHandler)
-	mux.HandleFunc("/metrics", apiCFG.hitsHandler)
-	mux.HandleFunc("/reset", apiCFG.resetHandler)
+	mux.HandleFunc("GET /api/healthz", HTTPHandler)
+	mux.HandleFunc("GET /api/metrics", apiCFG.hitsHandler)
+	mux.HandleFunc("/api/reset", apiCFG.resetHandler)
 
 	server.ListenAndServe()
 }
